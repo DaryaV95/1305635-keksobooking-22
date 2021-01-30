@@ -13,8 +13,9 @@ getRandomIntInclusive(1, 56);
 //Получение случайного числа с плавающей точкой из переданного диапазона включительно.
 function getRandomArbitrary(min, max, number) {
   if (min >= 0, max >= 0) {
-    let randomNumber = (max < min) ? null : Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
-    return randomNumber.toFixed(number);
+    let count = Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
+    let randomNumber = (max < min) ? null : count.toFixed(number);
+    return parseFloat(randomNumber);
   }
   return 0;
 }
