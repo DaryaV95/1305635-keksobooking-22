@@ -14,7 +14,7 @@ getRandomIntInclusive(1, 56);
 const getRandomArbitrary = function (min, max, number) {
   if (min >= 0 && max >= 0 && max > min) {
     const count = Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
-    let randomNumber = count.toFixed(number);
+    const randomNumber = count.toFixed(number);
     return parseFloat(randomNumber);
   }
   return 0;
