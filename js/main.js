@@ -14,17 +14,7 @@ const TYPES = [
   'bungalow',
 ];
 
-const ROOMS = ['1', '2', '3', '4', '5'];
-
-const GUESTS = ['1', '2', '3', '4', '5', '6']
-
-const TIMES_CHECKIN = [
-  '12:00',
-  '13:00',
-  '14:00',
-];
-
-const TIMES_CHECKOUT = [
+const TIMES_CHECKIN_CHECKOUT = [
   '12:00',
   '13:00',
   '14:00',
@@ -51,6 +41,16 @@ const PHOTOS = [
   'http://o0.github.io/assets/images/tokyo/hotel2.jpg',
   'http://o0.github.io/assets/images/tokyo/hotel3.jpg',
 ];
+
+const Rooms = {
+  MIN: 1,
+  MAX: 10,
+}
+
+const Quests = {
+  MIN: 1,
+  MAX: 8,
+}
 
 const OBJECT_COUNT = 10;
 const MIN_PRICE = 1000;
@@ -86,19 +86,13 @@ const getRandomArrayElement = (elements) => {
   return elements[getRandomIntInclusive(0, elements.length - 1)];
 };
 
-//Функция добавления случайного элемента в массив
-const getRandomArray = (elements) => {
-  let getArr = [];
-  for(let i = 0; i < elements.length - 1; i++) {
-    if (getRandomIntInclusive(0, 1) === true) {
-      getArr.push(elements[i]);
-    }
-  }
-  return getArr;
-};
+//Возвращает новый массив
+const getRandomArray = function (array) {
+  return array.slice(0, getRandomIntInclusive(1, array.length - 1));
+}
 
 const createObject = () => {
-  const getLocation = {
+  const pointLocation = {
     x: getRandomArbitrary(MIN_POINT_X, MAX_POINT_X, FLOAT_COUNT),
     y: getRandomArbitrary(MIN_POINT_Y, MAX_POINT_Y, FLOAT_COUNT),
   }
@@ -108,20 +102,20 @@ const createObject = () => {
     },
     offer: {
       title: getRandomArrayElement(TITLES),
-      address: `location.${getLocation.x}, location.${getLocation.y}`,
+      address: `${pointLocation.x}, ${pointLocation.y}`,
       price: getRandomIntInclusive(MIN_PRICE, MAX_PRICE),
       type: getRandomArrayElement(TYPES),
-      rooms: getRandomArrayElement(ROOMS),
-      guests: getRandomArrayElement(GUESTS),
-      checkin: getRandomArrayElement(TIMES_CHECKIN),
-      checkout: getRandomArrayElement(TIMES_CHECKOUT),
+      rooms: getRandomIntInclusive(Rooms.MIN, Rooms.MAX),
+      guests: getRandomIntInclusive(Quests.MIN, Quests.MAX),
+      checkin: getRandomArrayElement(TIMES_CHECKIN_CHECKOUT),
+      checkout: getRandomArrayElement(TIMES_CHECKIN_CHECKOUT),
       features: getRandomArray(FEATURES),
       description: getRandomArrayElement(DESCRIPTIONS),
       photos: getRandomArray(PHOTOS),
     },
     location: {
-      x: getLocation.x,
-      y: getLocation.y,
+      x: pointLocation.x,
+      y: pointLocation.y,
     },
   };
 };
