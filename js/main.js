@@ -42,12 +42,12 @@ const PHOTOS = [
   'http://o0.github.io/assets/images/tokyo/hotel3.jpg',
 ];
 
-const Rooms = {
+const ROOMS = {
   MIN: 1,
   MAX: 10,
 }
 
-const Quests = {
+const GUESTS = {
   MIN: 1,
   MAX: 8,
 }
@@ -88,7 +88,7 @@ const getRandomArrayElement = (elements) => {
 
 //Возвращает новый массив
 const getRandomArray = function (array) {
-  return array.slice(0, getRandomIntInclusive(1, array.length - 1));
+  return array.slice(0, getRandomIntInclusive(1, array.length));
 }
 
 const createObject = () => {
@@ -105,8 +105,8 @@ const createObject = () => {
       address: `${pointLocation.x}, ${pointLocation.y}`,
       price: getRandomIntInclusive(MIN_PRICE, MAX_PRICE),
       type: getRandomArrayElement(TYPES),
-      rooms: getRandomIntInclusive(Rooms.MIN, Rooms.MAX),
-      guests: getRandomIntInclusive(Quests.MIN, Quests.MAX),
+      rooms: getRandomIntInclusive(ROOMS.MIN, ROOMS.MAX),
+      guests: getRandomIntInclusive(GUESTS.MIN, GUESTS.MAX),
       checkin: getRandomArrayElement(TIMES_CHECKIN_CHECKOUT),
       checkout: getRandomArrayElement(TIMES_CHECKIN_CHECKOUT),
       features: getRandomArray(FEATURES),
@@ -120,5 +120,5 @@ const createObject = () => {
   };
 };
 
-const similarArray = new Array(OBJECT_COUNT).fill(null).map(() => createObject());
-similarArray; //чтобы линтер не ругался
+const similarArrays = new Array(OBJECT_COUNT).fill(null).map(() => createObject());
+similarArrays; //чтобы линтер не ругался
