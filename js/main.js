@@ -1,8 +1,5 @@
 'use strict';
 
-import {createObject} from '../js/data.js';
+import {createObject, similarArrays} from '../js/data.js';
 
-const OBJECT_COUNT = 10;
-
-const similarArrays = new Array(OBJECT_COUNT).fill(null).map(() => createObject());
-similarArrays; //чтобы линтер не ругался
+similarArrays, createObject; //чтобы линтер не ругался
