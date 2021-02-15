@@ -28,4 +28,19 @@ const getRandomArray = function (array) {
   return array.slice(0, getRandomIntInclusive(1, array.length));
 }
 
-export {getRandomIntInclusive, getRandomArbitrary, getRandomArrayElement, getRandomArray};
+const getType = function (type) {
+  switch (type) {
+    case 'flat':
+      return 'Квартира';
+    case 'bungalow':
+      return 'Бунгало';
+    case 'house':
+      return 'Дом';
+    case 'palace':
+      return 'Дворец';
+    default:
+      ' ';
+  }
+};
+
+export {getRandomIntInclusive, getRandomArbitrary, getRandomArrayElement, getRandomArray, getType};

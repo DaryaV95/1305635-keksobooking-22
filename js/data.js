@@ -30,6 +30,6 @@ const createObject = () => {
   };
 };
 
-const similarArrays = new Array(OBJECT_COUNT).fill(null).map(() => createObject());
+const similarArrays = () => new Array(OBJECT_COUNT).fill(null).map(() => createObject());
 
 export {createObject, similarArrays};
