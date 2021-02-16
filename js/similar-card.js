@@ -6,7 +6,6 @@ const cardTemplate = document.querySelector('#card')
   .querySelector('.popup');
 const mapCanvas = document.querySelector('#map-canvas');
 const similarCards = similarArrays();
-const similarCardFragment = document.createDocumentFragment();
 
 similarCards.forEach(({author, offer}) => {
   const cardCloneElement = cardTemplate.cloneNode(true);
@@ -54,6 +53,3 @@ similarCards.forEach(({author, offer}) => {
   cardCloneElement.querySelector('.popup__avatar').src = author.avatar;
   mapCanvas.appendChild(cardCloneElement);
 });
-
-mapCanvas.appendChild(similarCardFragment); //Отрисовываем из сгенерированных DOM-элементов в блок .map-canvas
-
