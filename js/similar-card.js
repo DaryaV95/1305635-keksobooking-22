@@ -4,10 +4,10 @@ import {getType} from './util.js';
 const cardTemplate = document.querySelector('#card')
   .content
   .querySelector('.popup');
-const mapCanvas = document.querySelector('#map-canvas');
-const similarCards = similarArrays();
+//const mapCanvas = document.querySelector('#map-canvas');
+const similarCards = similarArrays;
 
-similarCards.forEach(({author, offer}) => {
+const createCard = (({author, offer}) => {
   const cardCloneElement = cardTemplate.cloneNode(true);
   cardCloneElement.querySelector('.popup__title').textContent = offer.title;
   cardCloneElement.querySelector('.popup__text--address').textContent = offer.address;
@@ -51,5 +51,8 @@ similarCards.forEach(({author, offer}) => {
   }
 
   cardCloneElement.querySelector('.popup__avatar').src = author.avatar;
-  mapCanvas.appendChild(cardCloneElement);
+  //mapCanvas.appendChild(cardCloneElement);
+  return cardCloneElement;
 });
+
+export {createCard, similarCards};
