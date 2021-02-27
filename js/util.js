@@ -8,14 +8,16 @@ const getRandomIntInclusive = function (min, max) {
   return 0;
 }
 
-//Получение случайного числа с плавающей точкой из переданного диапазона включительно.
-const getRandomArbitrary = function (min, max, number) {
-  if (min >= 0 && max >= 0 && max > min) {
-    const count = Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
-    const randomNumber = count.toFixed(number);
-    return parseFloat(randomNumber);
+const getRandomArbitrary = (min, max, number) => {
+  if (min < 0 || max < 0) {
+    return 0;
   }
-  return 0;
+
+  if (max < min) {
+    [min, max] = [max, min];
+  }
+  const count = (Math.random() * (max - min) + min);
+  return count.toFixed(number);
 }
 
 //Функция случайного элемента из массива
