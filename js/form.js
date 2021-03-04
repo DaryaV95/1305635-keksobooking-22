@@ -1,3 +1,5 @@
+import {MAX_PRICE} from './const.js';
+
 const MIN_NAME_LENGTH = 30;
 const MAX_NAME_LENGTH = 100;
 
@@ -37,20 +39,29 @@ timeOut.addEventListener('change', () => {
 //проверка поля объявления
 const userAdForm = document.querySelector('#title');
 
-userAdForm.addEventListener('input', () => {
+userAdForm.addEventListener('change', () => {
   const valueLength = userAdForm.value.length;
 
   if (valueLength < MIN_NAME_LENGTH) {
-    userAdForm.classList.add('ad-form__error');
-    userAdForm.setCustomValidity('Объявление должно состоять минимум из 30-ти символов');
+    userAdForm.setCustomValidity('Объявление должно состоять минимум из ' + MIN_NAME_LENGTH + ' символов');
   } else if (valueLength > MAX_NAME_LENGTH) {
-    userAdForm.classList.add('ad-form__error');
     userAdForm.setCustomValidity('Удалите лишние ' + (valueLength - MAX_NAME_LENGTH) +' симв.');
   } else {
-    userAdForm.classList.remove('ad-form__error');
     userAdForm.setCustomValidity('');
   }
   userAdForm.reportValidity();
+});
+
+//проверка поля цены
+priceOfHousing.addEventListener('change', () => {
+  const priceValue = priceOfHousing.value;
+
+  if (priceValue > MAX_PRICE) {
+    priceOfHousing.setCustomValidity('Максимальная цена за ночь ' + MAX_PRICE);
+  } else {
+    priceOfHousing.setCustomValidity('');
+  }
+  priceOfHousing.reportValidity();
 });
 
 //проверка полей комнат и гостей
