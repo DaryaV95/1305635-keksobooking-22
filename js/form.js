@@ -1,4 +1,4 @@
-import {MAX_PRICE} from './const.js';
+import {MAX_PRICE, TYPE_PRICE} from './const.js';
 
 const MIN_NAME_LENGTH = 30;
 const MAX_NAME_LENGTH = 100;
@@ -7,26 +7,6 @@ const typeOfHousing = document.querySelector('#type');
 const priceOfHousing = document.querySelector('#price');
 const timeIn = document.querySelector('#timein');
 const timeOut = document.querySelector('#timeout');
-
-typeOfHousing.addEventListener('change', () => {
-  let placeholder;
-
-  switch (typeOfHousing.value) {
-    case 'bungalow':
-      placeholder = '0';
-      break
-    case 'flat':
-      placeholder = '1000';
-      break
-    case 'house':
-      placeholder = '5000';
-      break
-    case 'palace':
-      placeholder = '10000';
-      break
-  }
-  priceOfHousing.placeholder = placeholder;
-});
 
 timeIn.addEventListener('change', () => {
   timeOut.value = timeIn.value;
@@ -53,6 +33,13 @@ userAdForm.addEventListener('change', () => {
 });
 
 //проверка поля цены
+typeOfHousing.addEventListener('change', () => {
+  const typeValue = typeOfHousing.value;
+
+  priceOfHousing.placeholder = TYPE_PRICE[typeValue];
+  priceOfHousing.min = TYPE_PRICE[typeValue];
+});
+
 priceOfHousing.addEventListener('change', () => {
   const priceValue = priceOfHousing.value;
 
