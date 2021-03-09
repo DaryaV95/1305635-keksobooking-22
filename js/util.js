@@ -1,4 +1,6 @@
 //Взято с MDN. Получение случайного целого числа в заданном интервале.
+import {ALERT_SHOW_TIME} from './const.js';
+
 const getRandomIntInclusive = function (min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -45,4 +47,25 @@ const getType = function (type) {
   }
 };
 
-export {getRandomIntInclusive, getRandomArbitrary, getRandomArrayElement, getRandomArray, getType};
+const showAlert = () => {
+  const alertDiv = document.createElement('div');
+  alertDiv.style.zIndex = 1000;
+  alertDiv.style.position = 'absolute';
+  alertDiv.style.left = 0;
+  alertDiv.style.top = '300px';
+  alertDiv.style.right = 0;
+  alertDiv.style.padding = '10px 3px';
+  alertDiv.style.fontSize = '30px';
+  alertDiv.style.textAlign = 'center';
+  alertDiv.style.backgroundColor = '#ffaa99';
+
+  alertDiv.textContent = ('Не удалось получить данные с сервера!');
+
+  document.body.append(alertDiv);
+
+  setTimeout(() => {
+    alertDiv.remove();
+  }, ALERT_SHOW_TIME);
+}
+
+export {getRandomIntInclusive, getRandomArbitrary, getRandomArrayElement, getRandomArray, getType, showAlert};
