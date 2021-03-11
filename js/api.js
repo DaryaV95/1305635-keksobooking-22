@@ -1,7 +1,5 @@
+import {RECEIVING_SERVER, DISPATCH_SERVER} from './const.js';
 import {showAlert} from './util.js';
-
-const RECEIVING_SERVER = 'https://22.javascript.pages.academy/keksobooking/data';
-const DISPATCH_SERVER = 'https://22.javascript.pages.academy/keksobooking';
 
 //Получение данных с сервера
 const getData = (onSuccess) => {

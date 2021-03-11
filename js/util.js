@@ -47,17 +47,13 @@ const getType = function (type) {
   }
 };
 
+//при сбое получения данных с сервера
 const showAlert = () => {
   const alertDiv = document.createElement('div');
-  alertDiv.style.zIndex = 1000;
-  alertDiv.style.position = 'absolute';
-  alertDiv.style.left = 0;
-  alertDiv.style.top = '300px';
-  alertDiv.style.right = 0;
-  alertDiv.style.padding = '10px 3px';
-  alertDiv.style.fontSize = '30px';
-  alertDiv.style.textAlign = 'center';
-  alertDiv.style.backgroundColor = '#ffaa99';
+  alertDiv.style.cssText =
+    'z-index: 400; position: absolute; left: 0; \
+    top: 300px; right: 0; padding: 10px 3px; font-size: 30px; \
+    text-align: center; background-color: #ffaa99;';
 
   alertDiv.textContent = ('Не удалось получить данные с сервера!');
 
@@ -68,4 +64,8 @@ const showAlert = () => {
   }, ALERT_SHOW_TIME);
 }
 
-export {getRandomIntInclusive, getRandomArbitrary, getRandomArrayElement, getRandomArray, getType, showAlert};
+const isEscEvent = (evt) => {
+  return evt.key === 'Esc' || evt.key === 'Escape';
+};
+
+export {getRandomIntInclusive, getRandomArbitrary, getRandomArrayElement, getRandomArray, getType, showAlert, isEscEvent};
