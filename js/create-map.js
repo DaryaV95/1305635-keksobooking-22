@@ -1,9 +1,11 @@
 /* global L:readonly */
 
-import {similarArrays} from './data.js';
 import {FLOAT_COUNT, CENTER_TOKYO_LAT, CENTER_TOKYO_LNG, PIN_WIDTH, PIN_HEIGHT, SCALE_MAP} from './const.js';
 import {createCard} from './similar-card.js';
 import {activateForm} from './activate-form.js';
+
+const MAIN_PIN = '../img/main-pin.svg';
+const ANOTHER_PIN = '../img/pin.svg';
 
 const mapCanvas = document.querySelector('#map-canvas');
 const adFormAddress = document.querySelector('#address');
@@ -26,7 +28,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 
 //Добавляем главную метку
 const mainPinIcon = L.icon({
-  iconUrl: '../img/main-pin.svg',
+  iconUrl: MAIN_PIN,
   iconSize: [PIN_WIDTH, PIN_HEIGHT],
   iconAnchor: [PIN_WIDTH / 2, PIN_HEIGHT],
 });
@@ -50,33 +52,36 @@ mainMarker.on('move', (evt) => {
   adFormAddress.value = `${evt.target.getLatLng().lat.toFixed(FLOAT_COUNT)}, ${evt.target.getLatLng().lng.toFixed(FLOAT_COUNT)}`;
 });
 
-//Вот здесь, похоже, проблема
-similarArrays().forEach((ad) => {
-  const lat = ad.location.x;
-  const lng = ad.location.y;
+const createOffers = (offers) => {
+  offers.forEach((ad) => {
+    const lat = ad.location.lat;
+    const lng = ad.location.lng;
 
-  const pinIcon = L.icon({
-    iconUrl: '../img/pin.svg',
-    iconSize: [PIN_WIDTH, PIN_HEIGHT],
-    iconAnchor: [PIN_WIDTH / 2, PIN_HEIGHT],
-  });
+    const pinIcon = L.icon({
+      iconUrl: ANOTHER_PIN,
+      iconSize: [PIN_WIDTH, PIN_HEIGHT],
+      iconAnchor: [PIN_WIDTH / 2, PIN_HEIGHT],
+    });
 
-  const marker = L.marker(
-    {
-      lat,
-      lng,
-    },
-    {
-      icon: pinIcon,
-    },
-  );
-
-  marker
-    .addTo(map)
-    .bindPopup(
-      createCard(ad),
+    const marker = L.marker(
       {
-        keepInView: true,
+        lat,
+        lng,
+      },
+      {
+        icon: pinIcon,
       },
     );
-});
+
+    marker
+      .addTo(map)
+      .bindPopup(
+        createCard(ad),
+        {
+          keepInView: true,
+        },
+      );
+  });
+};
+
+export {createOffers, mainMarker};

@@ -1,11 +1,8 @@
-import {similarArrays} from './data.js';
 import {getType} from './util.js';
 
 const cardTemplate = document.querySelector('#card')
   .content
   .querySelector('.popup');
-//const mapCanvas = document.querySelector('#map-canvas');
-const similarCards = similarArrays;
 
 const createCard = (({author, offer}) => {
   const cardCloneElement = cardTemplate.cloneNode(true);
@@ -51,8 +48,8 @@ const createCard = (({author, offer}) => {
   }
 
   cardCloneElement.querySelector('.popup__avatar').src = author.avatar;
-  //mapCanvas.appendChild(cardCloneElement);
+
   return cardCloneElement;
 });
 
-export {createCard, similarCards};
+export {createCard};
