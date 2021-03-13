@@ -1,8 +1,5 @@
 import {getType} from './util.js';
-
-const cardTemplate = document.querySelector('#card')
-  .content
-  .querySelector('.popup');
+import {cardTemplate} from './elements.js';
 
 const createCard = (({author, offer}) => {
   const cardCloneElement = cardTemplate.cloneNode(true);

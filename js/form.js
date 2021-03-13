@@ -1,15 +1,5 @@
-import {MAX_PRICE, TYPE_PRICE} from './const.js';
-
-const MIN_NAME_LENGTH = 30;
-const MAX_NAME_LENGTH = 100;
-
-const typeOfHousing = document.querySelector('#type');
-const priceOfHousing = document.querySelector('#price');
-const timeIn = document.querySelector('#timein');
-const timeOut = document.querySelector('#timeout');
-const userAdForm = document.querySelector('#title');
-const rooms = document.querySelector('#room_number');
-const capacity = document.querySelector('#capacity');
+import {MAX_PRICE, TYPE_PRICE, MIN_NAME_LENGTH, MAX_NAME_LENGTH} from './const.js';
+import {typeOfHousing, priceOfHousing, timeIn, timeOut, userAdForm, rooms, capacity} from './elements.js';
 
 timeIn.addEventListener('change', () => {
   timeOut.value = timeIn.value;

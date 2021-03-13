@@ -1,15 +1,9 @@
-import {mapFilters} from './disable-form.js';
 import {removePins} from './create-map.js';
 import {MIN_FILTER_PRICE, MAX_FILTER_PRICE} from './const.js';
-
-const housingType = mapFilters.querySelector('#housing-type');
-const housingPrice = mapFilters.querySelector('#housing-price');
-const housingRooms = mapFilters.querySelector('#housing-rooms');
-const housingGuests = mapFilters.querySelector('#housing-guests');
-const housingFeatures = mapFilters.querySelector('#housing-features');
+import {mapFilters, housingType, housingPrice, housingRooms, housingGuests, housingFeatures} from './elements.js';
 
 // Проверяем значения
-const checkedType = (data) => (housingType.value === 'any' || data.offer.type === housingType.value);
+const checkedType = (data) => (housingType.value === 'any' || housingType.value === data.offer.type);
 
 const checkedPrice = (data) => {
   switch (housingPrice.value) {
@@ -45,7 +39,7 @@ const getFilterData = (data) => {
     checkedPrice(data) &&
     checkedRoom(data) &&
     checkedGuest(data) &&
-    checkedFilters(data.offer.features)
+    checkedFilters(data)
   )
 }
 

@@ -1,12 +1,9 @@
 /* global L:readonly */
-
 import {FLOAT_COUNT, OBJECT_COUNT, CENTER_TOKYO_LAT, CENTER_TOKYO_LNG, PIN_WIDTH, PIN_HEIGHT, SCALE_MAP, MAIN_PIN, ANOTHER_PIN, PINS} from './const.js';
 import {createCard} from './similar-card.js';
 import {activateForm} from './activate-form.js';
 import {getFilterData} from './filter.js';
-
-const mapCanvas = document.querySelector('#map-canvas');
-const adFormAddress = document.querySelector('#address');
+import {mapCanvas, adFormAddress} from './elements.js';
 
 //Создаем карту
 const map = L.map(mapCanvas)
@@ -52,7 +49,6 @@ mainMarker.on('move', (evt) => {
 
 const createOffers = (offers) => {
   offers
-    .slice() //из демки
     .filter(getFilterData)
     .slice(0, OBJECT_COUNT)//выводит не более 10 меток на карте
     .forEach((ad) => {
