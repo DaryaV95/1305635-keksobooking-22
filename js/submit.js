@@ -11,7 +11,7 @@ const success = document.querySelector('#success').content.querySelector('.succe
 //модальное окно при успешной отправке формы
 const successMessage = () => {
   const element = success.cloneNode(true);
-  element.style.cssText = 'z-index: 400;'; //при появлении должен перекрыть карту
+  element.style.zIndex = 400; //при появлении должен перекрыть карту
   main.append(element);
 
   document.addEventListener('keydown', () => {
@@ -42,7 +42,7 @@ const error = document.querySelector('#error').content.querySelector('.error');
 //модальное окно при ошибке размещения
 const errorMessage = () => {
   const element = error.cloneNode(true);
-  element.style.cssText = 'z-index: 400;'; //при появлении должен перекрыть карту
+  element.style.zIndex = 400; //при появлении должен перекрыть карту
   main.append(element);
 
   const errorButton = element.querySelector('.error__button');
@@ -69,7 +69,7 @@ const setFormSubmit = (onSuccess, onFail) => {
 
     sendData(
       onSuccess,
-      () => onFail(),
+      onFail,
       new FormData(evt.target),
     );
   });
