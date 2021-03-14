@@ -18,6 +18,7 @@ const MIN_FILTER_PRICE = 10000;
 const MAX_FILTER_PRICE = 50000;
 const MIN_NAME_LENGTH = 30;
 const MAX_NAME_LENGTH = 100;
+const RERENDER_DELAY = 500;
 const MAIN_PIN = '../img/main-pin.svg';
 const ANOTHER_PIN = '../img/pin.svg';
 const PINS = [];
@@ -42,5 +43,6 @@ export {
   PINS, MIN_FILTER_PRICE,
   MAX_FILTER_PRICE,
   MIN_NAME_LENGTH,
-  MAX_NAME_LENGTH
+  MAX_NAME_LENGTH,
+  RERENDER_DELAY
 };
