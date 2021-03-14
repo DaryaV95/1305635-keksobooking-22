@@ -68,4 +68,12 @@ const isEscEvent = (evt) => {
   return evt.key === 'Esc' || evt.key === 'Escape';
 };
 
-export {getRandomIntInclusive, getRandomArbitrary, getRandomArrayElement, getRandomArray, getType, showAlert, isEscEvent};
+export {
+  getRandomIntInclusive,
+  getRandomArbitrary,
+  getRandomArrayElement,
+  getRandomArray,
+  getType,
+  showAlert,
+  isEscEvent
+};

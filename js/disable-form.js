@@ -1,8 +1,4 @@
-const adForm = document.querySelector('.ad-form');
-const adFieldsetForm = adForm.querySelectorAll('fieldset');
-const mapFilters = document.querySelector('.map__filters');
-const mapFieldset = mapFilters.querySelector('fieldset');
-const mapSelect = mapFilters.querySelectorAll('select');
+import {adForm, adFieldsetForm, mapFilters, mapFieldset, mapSelect} from './elements.js';
 
 const disableForm = function () {
   adForm.classList.add('ad-form--disabled');
@@ -18,5 +14,3 @@ const disableForm = function () {
 };
 
 disableForm();
-
-export {adForm, adFieldsetForm, mapFilters, mapFieldset, mapSelect};

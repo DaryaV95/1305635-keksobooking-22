@@ -1,17 +1,13 @@
 import {sendData} from './api.js';
 import {mainMarker} from './create-map.js';
-import {adForm, mapFilters} from './disable-form.js';
+import {adForm, mapFilters, adFormReset, main, success, error} from './elements.js';
 import {CENTER_TOKYO_LAT, CENTER_TOKYO_LNG} from './const.js';
 import {isEscEvent} from './util.js';
-
-const adFormReset = adForm.querySelector('.ad-form__reset');
-const main = document.querySelector('main');
-const success = document.querySelector('#success').content.querySelector('.success');
 
 //модальное окно при успешной отправке формы
 const successMessage = () => {
   const element = success.cloneNode(true);
-  element.style.cssText = 'z-index: 400;'; //при появлении должен перекрыть карту
+  element.style.zIndex = 400; //при появлении должен перекрыть карту
   main.append(element);
 
   document.addEventListener('keydown', () => {
@@ -25,7 +21,6 @@ const successMessage = () => {
   });
 }
 
-
 //возвращает маркер на место
 const resetFunction = () => {
   adForm.reset();
@@ -37,12 +32,10 @@ adFormReset.addEventListener('click', () => {
   resetFunction();
 });
 
-const error = document.querySelector('#error').content.querySelector('.error');
-
 //модальное окно при ошибке размещения
 const errorMessage = () => {
   const element = error.cloneNode(true);
-  element.style.cssText = 'z-index: 400;'; //при появлении должен перекрыть карту
+  element.style.zIndex = 400; //при появлении должен перекрыть карту
   main.append(element);
 
   const errorButton = element.querySelector('.error__button');
@@ -69,7 +62,7 @@ const setFormSubmit = (onSuccess, onFail) => {
 
     sendData(
       onSuccess,
-      () => onFail(),
+      onFail,
       new FormData(evt.target),
     );
   });

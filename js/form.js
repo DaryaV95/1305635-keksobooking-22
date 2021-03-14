@@ -1,12 +1,5 @@
-import {MAX_PRICE, TYPE_PRICE} from './const.js';
-
-const MIN_NAME_LENGTH = 30;
-const MAX_NAME_LENGTH = 100;
-
-const typeOfHousing = document.querySelector('#type');
-const priceOfHousing = document.querySelector('#price');
-const timeIn = document.querySelector('#timein');
-const timeOut = document.querySelector('#timeout');
+import {MAX_PRICE, TYPE_PRICE, MIN_NAME_LENGTH, MAX_NAME_LENGTH} from './const.js';
+import {typeOfHousing, priceOfHousing, timeIn, timeOut, userAdForm, rooms, capacity} from './elements.js';
 
 timeIn.addEventListener('change', () => {
   timeOut.value = timeIn.value;
@@ -17,8 +10,6 @@ timeOut.addEventListener('change', () => {
 });
 
 //проверка поля объявления
-const userAdForm = document.querySelector('#title');
-
 userAdForm.addEventListener('change', () => {
   const valueLength = userAdForm.value.length;
 
@@ -52,9 +43,6 @@ priceOfHousing.addEventListener('change', () => {
 });
 
 //проверка полей комнат и гостей
-const rooms = document.querySelector('#room_number');
-const capacity = document.querySelector('#capacity');
-
 const checkGuest = () => {
   const roomsValue = Number(rooms.value);
   const guestsValue = Number(capacity.value);

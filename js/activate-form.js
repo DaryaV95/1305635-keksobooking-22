@@ -1,4 +1,4 @@
-import {adForm, adFieldsetForm, mapFilters, mapFieldset, mapSelect} from './disable-form.js';
+import {adForm, adFieldsetForm, mapFilters, mapFieldset, mapSelect} from './elements.js';
 
 const activateForm = function () {
   adForm.classList.remove('ad-form--disabled');

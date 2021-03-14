@@ -1,14 +1,9 @@
 /* global L:readonly */
-
-import {FLOAT_COUNT, CENTER_TOKYO_LAT, CENTER_TOKYO_LNG, PIN_WIDTH, PIN_HEIGHT, SCALE_MAP} from './const.js';
+import {FLOAT_COUNT, OBJECT_COUNT, CENTER_TOKYO_LAT, CENTER_TOKYO_LNG, PIN_WIDTH, PIN_HEIGHT, SCALE_MAP, MAIN_PIN, ANOTHER_PIN, PINS} from './const.js';
 import {createCard} from './similar-card.js';
 import {activateForm} from './activate-form.js';
-
-const MAIN_PIN = '../img/main-pin.svg';
-const ANOTHER_PIN = '../img/pin.svg';
-
-const mapCanvas = document.querySelector('#map-canvas');
-const adFormAddress = document.querySelector('#address');
+import {getFilterData} from './filter.js';
+import {mapCanvas, adFormAddress} from './elements.js';
 
 //Создаем карту
 const map = L.map(mapCanvas)
@@ -53,35 +48,47 @@ mainMarker.on('move', (evt) => {
 });
 
 const createOffers = (offers) => {
-  offers.forEach((ad) => {
-    const lat = ad.location.lat;
-    const lng = ad.location.lng;
+  offers
+    .filter(getFilterData)
+    .slice(0, OBJECT_COUNT)//выводит не более 10 меток на карте
+    .forEach((ad) => {
+      const lat = ad.location.lat;
+      const lng = ad.location.lng;
 
-    const pinIcon = L.icon({
-      iconUrl: ANOTHER_PIN,
-      iconSize: [PIN_WIDTH, PIN_HEIGHT],
-      iconAnchor: [PIN_WIDTH / 2, PIN_HEIGHT],
-    });
+      const pinIcon = L.icon({
+        iconUrl: ANOTHER_PIN,
+        iconSize: [PIN_WIDTH, PIN_HEIGHT],
+        iconAnchor: [PIN_WIDTH / 2, PIN_HEIGHT],
+      });
 
-    const marker = L.marker(
-      {
-        lat,
-        lng,
-      },
-      {
-        icon: pinIcon,
-      },
-    );
-
-    marker
-      .addTo(map)
-      .bindPopup(
-        createCard(ad),
+      const marker = L.marker(
         {
-          keepInView: true,
+          lat,
+          lng,
+        },
+        {
+          icon: pinIcon,
         },
       );
-  });
+
+      marker
+        .addTo(map)
+        .bindPopup(
+          createCard(ad),
+          {
+            keepInView: true,
+          },
+        );
+      PINS.push(marker);
+    });
+  return PINS
 };
 
-export {createOffers, mainMarker};
+const removePins = () => {
+  PINS.forEach((marker) => {
+    marker.remove();
+  })
+  map.closePopup();
+};
+
+export {createOffers, mainMarker, removePins};
