@@ -25,7 +25,7 @@ const checkedGuest = (data) => (housingGuests.value === 'any' || Number(housingG
 const checkedFilters = (data) => {
   let value = true;
   housingFeatures.querySelectorAll('input:checked').forEach((feature) => {
-    if (data.indexOf(feature.value) === -1) {
+    if (data.offer.features.indexOf(feature.value) === -1) {
       value = false;
     }
   });
