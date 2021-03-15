@@ -4,7 +4,6 @@ import {showAlert} from './util.js';
 //Получение данных с сервера
 const getData = (onSuccess) => {
   fetch(RECEIVING_SERVER)
-
     .then((response) => response.json())
     .then((offers) => {
       onSuccess(offers);
