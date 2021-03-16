@@ -5,7 +5,6 @@ import {activateForm} from './activate-form.js';
 import {getFilterData} from './filter.js';
 import {mapCanvas, adFormAddress} from './elements.js';
 
-//Создаем карту
 const map = L.map(mapCanvas)
   .on('load', () => {
     activateForm();
@@ -13,15 +12,13 @@ const map = L.map(mapCanvas)
   .setView({
     lat: CENTER_TOKYO_LAT,
     lng: CENTER_TOKYO_LNG,
-  }, SCALE_MAP); //Масштаб карты
+  }, SCALE_MAP);
 
-//OpenStreetMap добавляем как слой на нашу созданную карту.
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   }).addTo(map);
 
-//Добавляем главную метку
 const mainPinIcon = L.icon({
   iconUrl: MAIN_PIN,
   iconSize: [PIN_WIDTH, PIN_HEIGHT],
@@ -50,7 +47,7 @@ mainMarker.on('move', (evt) => {
 const createOffers = (offers) => {
   offers
     .filter(getFilterData)
-    .slice(0, OBJECT_COUNT)//выводит не более 10 меток на карте
+    .slice(0, OBJECT_COUNT)
     .forEach((ad) => {
       const lat = ad.location.lat;
       const lng = ad.location.lng;

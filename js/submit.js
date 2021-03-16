@@ -4,10 +4,9 @@ import {adForm, mapFilters, adFormReset, main, success, error} from './elements.
 import {CENTER_TOKYO_LAT, CENTER_TOKYO_LNG} from './const.js';
 import {isEscEvent} from './util.js';
 
-//модальное окно при успешной отправке формы
 const successMessage = () => {
   const element = success.cloneNode(true);
-  element.style.zIndex = 400; //при появлении должен перекрыть карту
+  element.style.zIndex = 400;
   main.append(element);
 
   document.addEventListener('keydown', () => {
@@ -21,7 +20,6 @@ const successMessage = () => {
   });
 }
 
-//возвращает маркер на место
 const resetFunction = () => {
   adForm.reset();
   mainMarker.setLatLng([CENTER_TOKYO_LAT, CENTER_TOKYO_LNG]);
@@ -32,10 +30,9 @@ adFormReset.addEventListener('click', () => {
   resetFunction();
 });
 
-//модальное окно при ошибке размещения
 const errorMessage = () => {
   const element = error.cloneNode(true);
-  element.style.zIndex = 400; //при появлении должен перекрыть карту
+  element.style.zIndex = 400;
   main.append(element);
 
   const errorButton = element.querySelector('.error__button');

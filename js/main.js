@@ -10,7 +10,7 @@ import {RERENDER_DELAY} from './const.js';
 
 getData((offers) => {
   createOffers(offers);
-  changeFilter(_.debounce( //устраняет дребезг
+  changeFilter(_.debounce(
     () => createOffers(offers),
     RERENDER_DELAY,
   ));

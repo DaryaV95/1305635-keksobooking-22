@@ -1,11 +1,10 @@
 import {removePins} from './create-map.js';
-import {MIN_FILTER_PRICE, MAX_FILTER_PRICE} from './const.js';
+import {MIN_FILTER_PRICE, MAX_FILTER_PRICE, DEFAULT_VALUE} from './const.js';
 import {mapFilters, housingType, housingPrice, housingRooms, housingGuests, housingFeatures} from './elements.js';
 
-// Проверяем значения
-const checkedType = (data) => (housingType.value === 'any' || housingType.value === data.offer.type);
+const checkedFilterType = (data) => (housingType.value === DEFAULT_VALUE || housingType.value === data.offer.type);
 
-const checkedPrice = (data) => {
+const checkedFilterPrice = (data) => {
   switch (housingPrice.value) {
     case 'low':
       return data.offer.price < MIN_FILTER_PRICE;
@@ -18,11 +17,11 @@ const checkedPrice = (data) => {
   }
 };
 
-const checkedRoom = (data) => (housingRooms.value === 'any' || Number(housingRooms.value) === data.offer.rooms);
+const checkedFilterRoom = (data) => (housingRooms.value === DEFAULT_VALUE || Number(housingRooms.value) === data.offer.rooms);
 
-const checkedGuest = (data) => (housingGuests.value === 'any' || Number(housingGuests.value) === data.offer.guests);
+const checkedFilterGuest = (data) => (housingGuests.value === DEFAULT_VALUE || Number(housingGuests.value) === data.offer.guests);
 
-const checkedFilters = (data) => {
+const checkedFilterFeatures = (data) => {
   let value = true;
   housingFeatures.querySelectorAll('input:checked').forEach((feature) => {
     if (data.offer.features.indexOf(feature.value) === -1) {
@@ -32,14 +31,13 @@ const checkedFilters = (data) => {
   return value;
 }
 
-//вернет фильтрованные данные
 const getFilterData = (data) => {
   return (
-    checkedType(data) &&
-    checkedPrice(data) &&
-    checkedRoom(data) &&
-    checkedGuest(data) &&
-    checkedFilters(data)
+    checkedFilterType(data) &&
+    checkedFilterPrice(data) &&
+    checkedFilterRoom(data) &&
+    checkedFilterGuest(data) &&
+    checkedFilterFeatures(data)
   )
 }
 

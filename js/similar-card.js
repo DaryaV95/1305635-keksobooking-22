@@ -8,14 +8,18 @@ const createCard = (({author, offer}) => {
   cardCloneElement.querySelector('.popup__text--price').textContent = offer.price + '₽/ночь';
   cardCloneElement.querySelector('.popup__type').textContent = getType(offer.type);
 
-  // Проверка для корректного отображения текста
   let roomsForText = ' комната для '
   let guest = ' гостя'
 
-  roomsForText =(offer.rooms > 4) ? ' комнат для ':
-    (offer.rooms > 1) ? ' комнаты для ' :
-      ' комната для ';
-  guest = (offer.guests > 1) ?' гостей' : ' гостя';
+  if (offer.rooms > 4) {
+    roomsForText = ' комнат для ';
+  } else if (offer.rooms > 1) {
+    roomsForText = ' комнаты для ';
+  } else {
+    roomsForText = ' комната для ';
+  }
+
+  guest = (offer.guests > 1 || offer.guests === 0) ?' гостей' : ' гостя';
 
   cardCloneElement.querySelector('.popup__text--capacity').textContent = offer.rooms + roomsForText + offer.guests + guest;
   cardCloneElement.querySelector('.popup__text--time').textContent = 'Заезд после ' + offer.checkin + ' выезд до ' + offer.checkout;
@@ -37,7 +41,6 @@ const createCard = (({author, offer}) => {
   const offerPhotoItem = cardCloneElement.querySelector('.popup__photo');
   photoList.innerHTML = '';
 
-  //Записываем массив photos как src соответствующего изображения
   for (let i = 0; i < offer.photos.length; i++) {
     let newPhoto = offerPhotoItem.cloneNode(true);
     newPhoto.src = offer.photos[i];
