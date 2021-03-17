@@ -30,6 +30,7 @@ adFormReset.addEventListener('click', () => {
   resetFunction();
 });
 
+
 const errorMessage = () => {
   const element = error.cloneNode(true);
   element.style.zIndex = 400;
@@ -56,12 +57,12 @@ const setFormSubmit = (onSuccess, onFail) => {
 
   adForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
-
     sendData(
       onSuccess,
       onFail,
       new FormData(evt.target),
     );
+    resetFunction();
   });
 };
 
