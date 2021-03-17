@@ -18,6 +18,8 @@ const successMessage = () => {
   document.addEventListener('click', () => {
     element.remove();
   });
+
+  resetFunction();
 }
 
 const resetFunction = () => {
@@ -62,7 +64,6 @@ const setFormSubmit = (onSuccess, onFail) => {
       onFail,
       new FormData(evt.target),
     );
-    resetFunction();
   });
 };
 
