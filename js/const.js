@@ -1,10 +1,9 @@
-const TypePrice = {
-  bungalow: 0,
-  flat: 1000,
-  house: 5000,
-  palace: 10000,
+const MinPriceValue = {
+  'bungalow': 0,
+  'flat': 1000,
+  'house': 5000,
+  'palace': 10000,
 }
-
 const MAX_PRICE = 1000000;
 const FLOAT_COUNT = 5;
 const OBJECT_COUNT = 10;
@@ -22,7 +21,6 @@ const MAX_NAME_LENGTH = 100;
 const RERENDER_DELAY = 500;
 const MAIN_PIN = '../img/main-pin.svg';
 const ANOTHER_PIN = '../img/pin.svg';
-const PINS = [];
 const DEFAULT_VALUE = 'any';
 
 const RECEIVING_SERVER = 'https://22.javascript.pages.academy/keksobooking/data';
@@ -38,12 +36,13 @@ export {
   PIN_WIDTH,
   PIN_HEIGHT,
   SCALE_MAP,
-  TypePrice,
+  MinPriceValue,
   ALERT_SHOW_TIME,
   RECEIVING_SERVER,
   DISPATCH_SERVER,
-  MAIN_PIN, ANOTHER_PIN,
-  PINS, MIN_FILTER_PRICE,
+  MAIN_PIN,
+  ANOTHER_PIN,
+  MIN_FILTER_PRICE,
   MAX_FILTER_PRICE,
   MIN_NAME_LENGTH,
   MAX_NAME_LENGTH,

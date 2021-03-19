@@ -1,9 +1,11 @@
 /* global L:readonly */
-import {FLOAT_COUNT, OBJECT_COUNT, CENTER_TOKYO_LAT, CENTER_TOKYO_LNG, PIN_WIDTH, PIN_HEIGHT, SCALE_MAP, MAIN_PIN, ANOTHER_PIN, PINS} from './const.js';
+import {FLOAT_COUNT, OBJECT_COUNT, CENTER_TOKYO_LAT, CENTER_TOKYO_LNG, PIN_WIDTH, PIN_HEIGHT, SCALE_MAP, MAIN_PIN, ANOTHER_PIN} from './const.js';
 import {createCard} from './similar-card.js';
 import {activateForm} from './activate-form.js';
 import {getFilterData} from './filter.js';
 import {mapCanvas, adFormAddress} from './elements.js';
+
+const pins = [];
 
 const map = L.map(mapCanvas)
   .on('load', () => {
@@ -76,13 +78,13 @@ const createOffers = (offers) => {
             keepInView: true,
           },
         );
-      PINS.push(marker);
+      pins.push(marker);
     });
-  return PINS
+  return pins
 };
 
 const removePins = () => {
-  PINS.forEach((marker) => {
+  pins.forEach((marker) => {
     marker.remove();
   })
   map.closePopup();

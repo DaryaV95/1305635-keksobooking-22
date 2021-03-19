@@ -1,4 +1,4 @@
-import {NUMBER_OF_ROOMS, MAX_PRICE, TypePrice, MIN_NAME_LENGTH, MAX_NAME_LENGTH} from './const.js';
+import {NUMBER_OF_ROOMS, MAX_PRICE, MinPriceValue, MIN_NAME_LENGTH, MAX_NAME_LENGTH} from './const.js';
 import {typeOfHousing, priceOfHousing, timeIn, timeOut, userAdForm, rooms, capacity} from './elements.js';
 
 timeIn.addEventListener('change', () => {
@@ -25,8 +25,8 @@ userAdForm.addEventListener('change', () => {
 typeOfHousing.addEventListener('change', () => {
   const typeValue = typeOfHousing.value;
 
-  priceOfHousing.placeholder = TypePrice[typeValue];
-  priceOfHousing.min = TypePrice[typeValue];
+  priceOfHousing.placeholder = MinPriceValue[typeValue];
+  priceOfHousing.min = MinPriceValue[typeValue];
 });
 
 priceOfHousing.addEventListener('change', () => {

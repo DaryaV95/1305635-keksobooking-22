@@ -1,6 +1,6 @@
 import {adForm, adFieldsetForm, mapFilters, mapFieldset, mapSelect} from './elements.js';
 
-const activateForm = function () {
+const activateForm = () => {
   adForm.classList.remove('ad-form--disabled');
   adFieldsetForm.forEach((value) => {
     value.removeAttribute('disabled', 'disabled');
